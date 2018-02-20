@@ -38,13 +38,11 @@ public class WorldFrame extends JFrame{
 		
 		JMenu fileMenu = new JMenu();
 		menubar.add(fileMenu);
-		
-		
+				
 		this.setJMenuBar(menubar);
 				
 		redraw();
-		if(myIsRun)
-			run();
+
 	}
 	
 	public void redraw() {

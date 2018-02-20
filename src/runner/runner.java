@@ -15,6 +15,7 @@ public class runner {
 		WorldFrame myWorldFrame = new WorldFrame(new World(10,10));
 		setFrameSize(myWorldFrame, 4);
 		myWorldFrame.setVisible(true);
+		myWorldFrame.run();
 	}
 	
 	public static void setFrameSize(JFrame frame, int constant) {
