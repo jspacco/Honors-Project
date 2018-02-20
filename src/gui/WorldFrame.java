@@ -22,6 +22,7 @@ public class WorldFrame extends JFrame{
 	private boolean myIsRun;
 	private boolean myIsRedraw;	
 	private JPanel myButtonPanel;	
+	private Dimension mySelectedRegion;
 	
 	public WorldFrame(World world) {
 		super("Seed: " + world.toString());
