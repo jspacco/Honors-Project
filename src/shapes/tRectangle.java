@@ -47,11 +47,11 @@ public class tRectangle{
 	
 	public tRectangle createRandWrappedtangle() {
 		Random myRandom = new Random(System.currentTimeMillis());
-		int x = myRandom.nextInt(2*width - 1) - width;
-		int y = myRandom.nextInt(2*height - 1) - height;
+		int x = myRandom.nextInt(2*width-1) - width;
+		int y = myRandom.nextInt(2*height-1) - height;
 		
-		int _width = myRandom.nextInt(width);
-		int _height = myRandom.nextInt(height);
+		int _width = myRandom.nextInt(width - 1);
+		int _height = myRandom.nextInt(height - 1);
 
 		return new tRectangle(x,y,_width,_height);
 	}
@@ -92,10 +92,9 @@ public class tRectangle{
 			//System.out.println("%" + max + "=" + diffrence%max);
 			value = diffrence;
 			//System.out.println();
-			value = Math.abs(value);
 		}
 		
-		return value;
+		return wrapHelp(value, max);
 		
 	}
 	

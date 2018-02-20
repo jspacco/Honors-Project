@@ -12,7 +12,7 @@ import world.World;
 public class runner {
 
 	public static void main(String[] args) {		
-		WorldFrame myWorldFrame = new WorldFrame(new World(10,10));
+		WorldFrame myWorldFrame = new WorldFrame(new World(25,25));
 		setFrameSize(myWorldFrame, 4);
 		myWorldFrame.setVisible(true);
 		myWorldFrame.run();
