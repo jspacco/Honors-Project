@@ -24,8 +24,8 @@ public class TileButtonGrid {
 		myDimension = dimension;
 		myTileButtons = new TileButton[myDimension.getWidth()][dimension.getHeight()];
 		myTileGrid = tileGrid;
-		for(int x = myDimension.getBottomLeft().getX(); x < myDimension.getWidth(); x++) {
-			for(int y = myDimension.getBottomLeft().getY(); y < myDimension.getHeight(); y++) {
+		for(int x = myDimension.getBottomLeft().getX(); x < myDimension.getWidth() + myDimension.getBottomLeft().getX(); x++) {
+			for(int y = myDimension.getBottomLeft().getY(); y < myDimension.getHeight() + myDimension.getBottomLeft().getY(); y++) {
 				myTileButtons[x][y] = new TileButton(myTileGrid.getTile(x, y));				
 			}
 		}

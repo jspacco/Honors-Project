@@ -38,4 +38,8 @@ public class tPoint {
 	public tPoint copy() {
 		return new tPoint(x,y);
 	}
+	
+	public String toString() {
+		return "x" + x +", y" + y;
+	}
 }

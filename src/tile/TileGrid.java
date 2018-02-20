@@ -13,6 +13,7 @@ public class TileGrid {
 	public TileGrid(int width, int height) {
 		myRandom = new Random(System.currentTimeMillis());
 		myDimension = new tRectangle(width,height);
+		System.out.println("myDimension" + myDimension);
 		myTiles = new Tile[width][height];
 		
 		for(int x = 0; x < myDimension.getWidth(); x++) {
@@ -20,6 +21,21 @@ public class TileGrid {
 				myTiles[x][y] = new Tile(0,0,0);				
 			}
 		}
+		
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 100; j++) {
+				tPoint[] points = myDimension.getRandomWrappedPoints();
+				for(tPoint point: points) {
+					Tile tile = myTiles[point.getX()][point.getY()];
+					if(i==0)
+						tile.incrementHeight(1);
+					else if(i==1)
+						tile.incrementRainfall(1);
+					else if(i==2)
+						tile.incrementTemperature(1);
+				}
+			}
+		}	
 	}
 	
 	public Tile getTile(tPoint point) {

@@ -13,6 +13,6 @@ public class TileButton extends JButton{
 	}
 	
 	public void updateMapMode(int mapMode) {
-		this.setText(myTile.getHeight() + ", " + myTile.getTemperature() + ", "+ myTile.getRainfall());
+		this.setText("h" + myTile.getHeight() + ", t" + myTile.getTemperature() + ", r"+ myTile.getRainfall());
 	}
 }

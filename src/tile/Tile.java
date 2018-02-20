@@ -6,9 +6,6 @@ import java.util.Random;
 import datastructures.tRunnable;
 
 public class Tile extends tRunnable{
-	public static final int maxHeight = 100;
-	public static final int maxRainfall = 100;
-	public static final int maxTemperature = 100;
 	
 	private int myHeight;
 	private int myRainfall;
@@ -24,13 +21,12 @@ public class Tile extends tRunnable{
 
 	@Override
 	public void tick() {
-		myHeight++;		
+				
 	}
 
 	@Override
 	public String getReadableClassType() {
-		// TODO Auto-generated method stub
-		return null;
+		return "tile";
 	}
 
 	@Override
@@ -43,25 +39,41 @@ public class Tile extends tRunnable{
 		return myHeight;
 	}
 
-	public void setHeight(int myHeight) {
-		this.myHeight = myHeight;
+	public void setHeight(int height) {
+		this.myHeight = height;
+		if(myHeight < 0 || myHeight >= 100)
+			myHeight = 0;
 	}
 
+	public void incrementHeight(int height) {
+		setHeight(myHeight+height);
+	}
+	
 	public int getRainfall() {
 		return myRainfall;
 	}
 
-	public void setRainfall(int myRainfall) {
-		this.myRainfall = myRainfall;
+	public void setRainfall(int rainfall) {
+		this.myRainfall = rainfall;
+		if(myRainfall < 0 || myRainfall >= 100)
+			myRainfall = 0;
 	}
 
+	public void incrementRainfall(int rainfall) {
+		setRainfall(myRainfall+rainfall);
+	}
+	
 	public int getTemperature() {
 		return myTemperature;
 	}
 
-	public void setTemperature(int myTemperature) {
-		this.myTemperature = myTemperature;
+	public void setTemperature(int temperature) {
+		this.myTemperature = temperature;
+		if(myTemperature < 0 || myTemperature >= 100)
+			myTemperature = 0;
 	}
 	
-	
+	public void incrementTemperature(int temperature) {
+		setTemperature(myTemperature+temperature);
+	}
 }

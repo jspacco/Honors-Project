@@ -13,29 +13,30 @@ import tile.Tile;
 import world.World;
 import gui.MapMode;
 import shapes.tRectangle;
-
+import java.util.concurrent.TimeUnit;
 
 public class WorldFrame extends JFrame{
 
 	private World myWorld;
 	private int myCurrentMapMode;	
-	private boolean myIsRun;
-	private boolean myIsUpdateButtons;	
 	private JPanel myButtonPanel;	
 	private tRectangle mySelectedRegion;
 	private TileButtonGrid myTileButtonGrid;
 	
+	private boolean myIsRun;
+	private boolean myIsUpdateButtons;	
+	private int myWaitInSeconds;
 	
 	public WorldFrame(World world) {
 		super("Seed: " + world.toString());
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		myWorld = world;
 		myCurrentMapMode = MapMode.BIOME;
 		myIsRun = true;
-		myIsUpdateButtons = false;
+		myIsUpdateButtons = true;
 		mySelectedRegion = myWorld.getTileGrid().getDimension().copy();
 		myTileButtonGrid = new TileButtonGrid(myWorld.getTileGrid(),mySelectedRegion);
-		
+		myWaitInSeconds = 1;
 		myButtonPanel = new JPanel();						
 		this.add(myButtonPanel);
 		
@@ -84,6 +85,11 @@ public class WorldFrame extends JFrame{
 	public void run() {
 		myIsRun = true;
 		while(myIsRun){
+			try {
+				TimeUnit.SECONDS.sleep(myWaitInSeconds);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			if(myIsUpdateButtons) {
 				updateButtons();
 			}
