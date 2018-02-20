@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -13,6 +12,7 @@ import tile.Biome;
 import tile.Tile;
 import world.World;
 import gui.MapMode;
+import shapes.tRectangle;
 
 
 public class WorldFrame extends JFrame{
@@ -20,9 +20,11 @@ public class WorldFrame extends JFrame{
 	private World myWorld;
 	private int myCurrentMapMode;	
 	private boolean myIsRun;
-	private boolean myIsRedraw;	
+	private boolean myIsUpdateButtons;	
 	private JPanel myButtonPanel;	
-	private Dimension mySelectedRegion;
+	private tRectangle mySelectedRegion;
+	private TileButtonGrid myTileButtonGrid;
+	
 	
 	public WorldFrame(World world) {
 		super("Seed: " + world.toString());
@@ -30,7 +32,9 @@ public class WorldFrame extends JFrame{
 		myWorld = world;
 		myCurrentMapMode = MapMode.BIOME;
 		myIsRun = true;
-		myIsRedraw = true;
+		myIsUpdateButtons = false;
+		mySelectedRegion = myWorld.getTileGrid().getDimension().copy();
+		myTileButtonGrid = new TileButtonGrid(myWorld.getTileGrid(),mySelectedRegion);
 		
 		myButtonPanel = new JPanel();						
 		this.add(myButtonPanel);
@@ -42,24 +46,34 @@ public class WorldFrame extends JFrame{
 				
 		this.setJMenuBar(menubar);
 				
-		redraw();
+		draw();
 
 	}
 	
-	public void redraw() {
+	public void updateButtons() {
+		int width = mySelectedRegion.getWidth();
+		int height = mySelectedRegion.getHeight();
+		
+		for(int x = 0; x < width; x++) {
+			for(int y = 0; y < height; y++) {
+				TileButton temp = myTileButtonGrid.getTileButton(x, y);
+				temp.updateMapMode(myCurrentMapMode);
+			}
+		}
+	}
+	
+	public void draw() {
 		myButtonPanel.removeAll();
 		
-		Dimension dim = myWorld.getTileGrid().getDimension();
-		int width =(int) dim.getWidth();
-		int height = (int) dim.getHeight();
+		int width = mySelectedRegion.getWidth();
+		int height = mySelectedRegion.getHeight();
 		
 		GridLayout layout = new GridLayout(width,height);
 		myButtonPanel.setLayout(layout);
 		
 		for(int x = 0; x < width; x++) {
 			for(int y = 0; y < height; y++) {
-				Tile tile = myWorld.getTileGrid().getTile(x, y);
-				TileButton temp = new TileButton(tile);
+				TileButton temp = myTileButtonGrid.getTileButton(x, y);
 				temp.updateMapMode(myCurrentMapMode);
 				myButtonPanel.add(temp);
 			}
@@ -70,8 +84,8 @@ public class WorldFrame extends JFrame{
 	public void run() {
 		myIsRun = true;
 		while(myIsRun){
-			if(myIsRedraw) {
-				redraw();
+			if(myIsUpdateButtons) {
+				updateButtons();
 			}
 			myWorld.tick();
 		}
@@ -97,11 +111,11 @@ public class WorldFrame extends JFrame{
 		this.myIsRun = isRun;
 	}
 	
-	public boolean isRedraw() {
-		return myIsRedraw;
+	public boolean isUpdateButtons() {
+		return myIsUpdateButtons;
 	}
 	
-	public void setIsRedraw(boolean isRedraw) {
-		this.myIsRedraw = isRedraw;
+	public void setIsRedraw(boolean isUpdateButtons) {
+		this.myIsUpdateButtons = isUpdateButtons;
 	}
 }
