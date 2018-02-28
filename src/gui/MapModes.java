@@ -166,7 +166,6 @@ public class MapModes {
 			int height = cch(button.getTile().getHeight());
 			int rainfall = cch(button.getTile().getRainfall());
 			int temperature = cch(button.getTile().getTemperature());
-			System.out.println(height + "%, " + rainfall + "%, " + temperature + "%");
 			return new Color(height,rainfall,temperature);
 		}
 		
