@@ -13,7 +13,7 @@ public class runner {
 
 	public static void main(String[] args) {		
 		WorldFrame myWorldFrame = new WorldFrame(new World(25,25));
-		setFrameSize(myWorldFrame, 4);
+		setFrameSize(myWorldFrame, 2);
 		myWorldFrame.setVisible(true);
 		myWorldFrame.run();
 	}

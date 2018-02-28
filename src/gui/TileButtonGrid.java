@@ -8,25 +8,27 @@ import tile.Tile;
 import tile.TileGrid;
 
 public class TileButtonGrid {
+	private TileGrid myTileGrid;
 	private tRectangle myDimension;
 	private TileButton[][] myTileButtons;
-	private TileGrid myTileGrid;
+	private MapModes myMapModes;
 	
-	public TileButtonGrid(TileGrid tileGrid, int x, int y, int width, int height) {
-		this(tileGrid,new tPoint(x,y),width,height);
+	public TileButtonGrid(TileGrid tileGrid, MapModes mapModes, int x, int y, int width, int height) {
+		this(tileGrid,mapModes,new tPoint(x,y),width,height);
 	}
 	
-	public TileButtonGrid(TileGrid tileGrid, tPoint bottomLeft, int width, int height) {
-		this(tileGrid,new tRectangle(bottomLeft,width,height));
+	public TileButtonGrid(TileGrid tileGrid, MapModes mapModes, tPoint bottomLeft, int width, int height) {
+		this(tileGrid,mapModes,new tRectangle(bottomLeft,width,height));
 	}
 	
-	public TileButtonGrid(TileGrid tileGrid, tRectangle dimension) {
+	public TileButtonGrid(TileGrid tileGrid, MapModes mapModes, tRectangle dimension) {
 		myDimension = dimension;
 		myTileButtons = new TileButton[myDimension.getWidth()][dimension.getHeight()];
 		myTileGrid = tileGrid;
+		myMapModes = mapModes;
 		for(int x = myDimension.getBottomLeft().getX(); x < myDimension.getWidth() + myDimension.getBottomLeft().getX(); x++) {
 			for(int y = myDimension.getBottomLeft().getY(); y < myDimension.getHeight() + myDimension.getBottomLeft().getY(); y++) {
-				myTileButtons[x][y] = new TileButton(myTileGrid.getTile(x, y));				
+				myTileButtons[x][y] = new TileButton(mapModes,myTileGrid.getTile(x, y), new tPoint(x,y));				
 			}
 		}
 	}

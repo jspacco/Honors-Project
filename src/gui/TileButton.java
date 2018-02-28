@@ -1,39 +1,39 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+
+import shapes.tPoint;
 import tile.Tile;
 
 public class TileButton extends JButton{
+	private MapModes myMapModes;
 	private Tile myTile;
+	private tPoint myPoint;
 	
-	
-	public TileButton(Tile tile) {
+	public TileButton(MapModes mapModes, Tile tile, tPoint point) {
 		super();
+		myMapModes = mapModes;
 		myTile = tile;
-		//this.setBackground(new Color(cch(tile.getHeight()),cch(tile.getRainfall()),cch(tile.getTemperature())));
-		//this.setBackground(new Color(cch(tile.getHeight()),0,0));
-		//this.setBackground(new Color(cch(tile.getHeight()+tile.getRainfall()+tile.getTemperature()),0,0));
-		//this.setForeground(Color.WHITE);
-		this.setForeground(new Color(cch(tile.getHeight()+tile.getRainfall()+tile.getTemperature()),0,0));
-		this.setBorder(BorderFactory.createEmptyBorder());
+		myPoint = point;
+		this.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				myTile.edit();
+			}
+		});
 	}
 	
-	public void updateMapMode(int mapMode) {
-		this.setText("h" + myTile.getHeight() + ", t" + myTile.getTemperature() + ", r"+ myTile.getRainfall());
-		this.setText(this.getBackground().toString());
-		double temp = myTile.getHeight()+myTile.getRainfall()+myTile.getTemperature();
-		temp/=300;
-		temp*=10;
-		temp = (int)temp;
-		temp*=10;
-
-		this.setText(""+temp);
+	public void update() {
+		myMapModes.updateTileButton(this);
 	}
 	
-	public int cch(int y) {
-		return (y*255)/300;
+	public Tile getTile() {
+		return myTile;
 	}
+	
 }

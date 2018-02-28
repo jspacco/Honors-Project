@@ -1,3 +1,7 @@
+/*
+Code the diamond sqyare algorithm bluh.org
+ */
+
 package gui;
 
 import java.awt.GridLayout;
@@ -11,14 +15,13 @@ import javax.swing.JPanel;
 import tile.Biome;
 import tile.Tile;
 import world.World;
-import gui.MapMode;
 import shapes.tRectangle;
 import java.util.concurrent.TimeUnit;
 
 public class WorldFrame extends JFrame{
 
 	private World myWorld;
-	private int myCurrentMapMode;	
+	private MapModes myMapModes;	
 	private JPanel myButtonPanel;	
 	private tRectangle mySelectedRegion;
 	private TileButtonGrid myTileButtonGrid;
@@ -31,21 +34,18 @@ public class WorldFrame extends JFrame{
 		super("Seed: " + world.toString());
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		myWorld = world;
-		myCurrentMapMode = MapMode.BIOME;
-		myIsRun = true;
-		myIsUpdateButtons = true;
+		myMapModes = new MapModes(myTileButtonGrid);
+		myIsRun = false;
+		myIsUpdateButtons = false;
 		mySelectedRegion = myWorld.getTileGrid().getDimension().copy();
-		myTileButtonGrid = new TileButtonGrid(myWorld.getTileGrid(),mySelectedRegion);
+		
+		JMenuBar menubar = new WorldMenuBar(this);
+		this.setJMenuBar(menubar);
+		
+		myTileButtonGrid = new TileButtonGrid(myWorld.getTileGrid(),myMapModes,mySelectedRegion);
 		myWaitInSeconds = 1;
 		myButtonPanel = new JPanel();						
 		this.add(myButtonPanel);
-		
-		JMenuBar menubar = new JMenuBar();
-		
-		JMenu fileMenu = new JMenu();
-		menubar.add(fileMenu);
-				
-		this.setJMenuBar(menubar);
 				
 		draw();
 
@@ -58,7 +58,7 @@ public class WorldFrame extends JFrame{
 		for(int x = 0; x < width; x++) {
 			for(int y = 0; y < height; y++) {
 				TileButton temp = myTileButtonGrid.getTileButton(x, y);
-				temp.updateMapMode(myCurrentMapMode);
+				temp.update();
 			}
 		}
 	}
@@ -75,7 +75,7 @@ public class WorldFrame extends JFrame{
 		for(int x = 0; x < width; x++) {
 			for(int y = 0; y < height; y++) {
 				TileButton temp = myTileButtonGrid.getTileButton(x, y);
-				temp.updateMapMode(myCurrentMapMode);
+				temp.update();
 				myButtonPanel.add(temp);
 			}
 			
@@ -101,14 +101,6 @@ public class WorldFrame extends JFrame{
 		return myWorld;
 	}
 
-	public int getCurrentMapMode() {
-		return myCurrentMapMode;
-	}
-
-	public void setCurrentMapMode(int myCurrentMapMode) {
-		this.myCurrentMapMode = myCurrentMapMode;
-	}
-
 	public boolean isRun() {
 		return myIsRun;
 	}
@@ -121,7 +113,11 @@ public class WorldFrame extends JFrame{
 		return myIsUpdateButtons;
 	}
 	
-	public void setIsRedraw(boolean isUpdateButtons) {
+	public void setIsUpdateButtons(boolean isUpdateButtons) {
 		this.myIsUpdateButtons = isUpdateButtons;
+	}
+	
+	public MapModes getMapModes() {
+		return myMapModes;
 	}
 }

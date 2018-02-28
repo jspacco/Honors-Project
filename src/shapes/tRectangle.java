@@ -3,6 +3,8 @@ package shapes;
 import java.util.Random;
 
 public class tRectangle{
+	Random myRandom = new Random(System.currentTimeMillis());
+	
 	private tPoint bottomLeft;
 	private int width;
 	private int height;
@@ -25,9 +27,8 @@ public class tRectangle{
 		return new tRectangle(bottomLeft.copy(),width,height);
 	}
 	
-	public tPoint[] getRandomWrappedPoints() {
-		tRectangle randWrappedtangle = createRandWrappedtangle();
-		System.out.println("randWrappedtangle" + randWrappedtangle);
+	public tPoint[] getRandomWrappedPoints(tRectangle randWrappedtangle) {
+		////System.out.println("randWrappedtangle" + randWrappedtangle);
 		int wrapped_x = randWrappedtangle.getX();
 		int wrapped_y = randWrappedtangle.getY();
 		int wrapped_width = randWrappedtangle.getWidth();
@@ -46,7 +47,6 @@ public class tRectangle{
 	}
 	
 	public tRectangle createRandWrappedtangle() {
-		Random myRandom = new Random(System.currentTimeMillis());
 		int x = myRandom.nextInt(2*width-1) - width;
 		int y = myRandom.nextInt(2*height-1) - height;
 		
@@ -65,8 +65,8 @@ public class tRectangle{
 		int _x = wrapHelp(x, width);
 		int _y = wrapHelp(y, height);
 		
-		if( 0 > _x || 0 > _y|| _x >= width || _y >= height) 
-			System.out.println(new tPoint(x,y) + " => " + new tPoint(_x,_y));
+		//if( 0 > _x || 0 > _y|| _x >= width || _y >= height) 
+			//System.out.println(new tPoint(x,y) + " => " + new tPoint(_x,_y));
 		return new tPoint(_x,_y);
 	}
 	
@@ -74,7 +74,7 @@ public class tRectangle{
 		boolean pos = 0 <= a;
 		boolean inrange = a < max;
 		
-		//System.out.println("\t" + a + " pos " + pos + " inrange " + inrange);
+		////System.out.println("\t" + a + " pos " + pos + " inrange " + inrange);
 		
 		if(pos && inrange) {
 			return a;
@@ -87,11 +87,11 @@ public class tRectangle{
 		}
 		if(!inrange) {
 			int diffrence = max - a;
-			//System.out.print(max + "-" + a + "=" + diffrence + ", " + diffrence);
+			////System.out.print(max + "-" + a + "=" + diffrence + ", " + diffrence);
 			diffrence=diffrence%max;
-			//System.out.println("%" + max + "=" + diffrence%max);
+			////System.out.println("%" + max + "=" + diffrence%max);
 			value = diffrence;
-			//System.out.println();
+			////System.out.println();
 		}
 		
 		return wrapHelp(value, max);

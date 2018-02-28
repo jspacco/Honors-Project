@@ -3,7 +3,11 @@ package tile;
 import java.awt.Color;
 import java.util.Random;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import datastructures.tRunnable;
+import runner.runner;
 
 public class Tile extends tRunnable{
 	
@@ -19,9 +23,15 @@ public class Tile extends tRunnable{
 		myTemperature = temperature;
 	}
 
+	public String toString() {
+		return myHeight + ", " + myRainfall + ", " + myTemperature;
+	}
+	
 	@Override
 	public void tick() {
-				
+		//this.incrementHeight(1);	
+		//this.incrementRainfall(1);
+		//this.incrementTemperature(1);
 	}
 
 	@Override
@@ -31,7 +41,11 @@ public class Tile extends tRunnable{
 
 	@Override
 	public void edit() {
-		// TODO Auto-generated method stub
+		JFrame frame =new JFrame();
+		JButton button = new JButton(myHeight + " " + myRainfall + " " + myTemperature);
+		runner.setFrameSize(frame,4);
+		frame.add(button);
+		frame.setVisible(true);
 		
 	}
 
