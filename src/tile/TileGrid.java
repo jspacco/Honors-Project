@@ -9,6 +9,7 @@ public class TileGrid {
 	private Random myRandom = new Random(System.currentTimeMillis());;
 	private tRectangle myDimension;
 	private Tile[][] myTiles;
+	public static int launchSettings = 2;
 	
 	public TileGrid(int width, int height) {
 		myDimension = new tRectangle(width,height);
@@ -19,36 +20,7 @@ public class TileGrid {
 				myTiles[x][y] = new Tile(0,0,0);				
 			}
 		}
-		
-		/*
-		tRectangle temp = new tRectangle(0,0,3,3);
-		tPoint[] points = myDimension.getRandomWrappedPoints(temp);
-		for(tPoint point: points) {
-			Tile tile = myTiles[point.getX()][point.getY()];
-			tile.incrementHeight(100);
-			tile.incrementRainfall(100);
-			tile.incrementTemperature(100);
-			System.out.println(point + " " + tile);
-		}
-		*/
-		
-		
-		for(int i = 0; i < 3; i++) {
-			for(int j = 0; j < 100; j++) {
-				tRectangle temp = myDimension.createRandWrappedtangle();
-				//tRectangle temp = new tRectangle(-3,-3,3,3);
-				tPoint[] points = myDimension.getRandomWrappedPoints(temp);
-				for(tPoint point: points) {
-					Tile tile = myTiles[point.getX()][point.getY()];
-					if(i==0)
-						tile.incrementHeight(1);
-					else if(i==1)
-						tile.incrementRainfall(1);
-					else if(i==2)
-						tile.incrementTemperature(1);
-				}
-			}
-		}	
+		generate();
 		
 	}
 	
@@ -67,6 +39,62 @@ public class TileGrid {
 
 	public tRectangle getDimension() {
 		return myDimension;
+	}
+	
+	private void generate_00() {
+		tRectangle temp = new tRectangle(-3,-3,10,10);
+		tPoint[] points = myDimension.getRandomWrappedPoints(temp);
+		for(tPoint point: points) {
+			Tile tile = myTiles[point.getX()][point.getY()];
+			tile.incrementHeight(99);
+			tile.incrementRainfall(99);
+			tile.incrementTemperature(99);
+			System.out.println(point + " " + tile);
+		}
+	}
+	
+	private void generate_01() {
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 100; j++) {
+				tRectangle temp = myDimension.createRandWrappedtangle();
+				//tRectangle temp = new tRectangle(-3,-3,3,3);
+				tPoint[] points = myDimension.getRandomWrappedPoints(temp);
+				for(tPoint point: points) {
+					Tile tile = myTiles[point.getX()][point.getY()];
+					if(i==0)
+						tile.incrementHeight(1);
+					else if(i==1)
+						tile.incrementRainfall(1);
+					else if(i==2)
+						tile.incrementTemperature(1);
+				}
+			}
+		}
+	}
+	
+	private void generate_02() {
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 10; j++) {
+				tRectangle temp = myDimension.createRandWrappedtangle();
+				//tRectangle temp = new tRectangle(-3,-3,3,3);
+				tPoint[] points = myDimension.getRandomWrappedPoints(temp);
+				for(tPoint point: points) {
+					Tile tile = myTiles[point.getX()][point.getY()];
+					if(i==0)
+						tile.incrementHeight(10);
+					else if(i==1)
+						tile.incrementRainfall(10);
+					else if(i==2)
+						tile.incrementTemperature(10);
+				}
+			}
+		}
+	}
+	
+	private void generate() {
+		if(launchSettings==0) generate_00();
+		else if(launchSettings==1) generate_01();
+		else if(launchSettings==2) generate_02();	
 	}
 	
 }

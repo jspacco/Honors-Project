@@ -17,7 +17,7 @@ public class MapModes {
 	
 	public MapModes(TileButtonGrid grid) {
 		myTileButtonGrid = grid;
-		selectedMapMode = 2;
+		selectedMapMode = 4;
 		nameMapModeDictonary = new HashMap<String,Integer>();
 		numMapModeDictonary = new HashMap<Integer,MapMode>();
 		numeMapModeDictonary = new HashMap<Integer, String>();
@@ -150,10 +150,13 @@ public class MapModes {
 
 		@Override
 		public String getText(TileButton button) {
+			return "";
+			/*
 			int height = cch(button.getTile().getHeight());
 			int rainfall = cch(button.getTile().getRainfall());
 			int temperature = cch(button.getTile().getTemperature());
 			return height + "%, " + rainfall + "%, " + temperature + "%";
+			*/
 		}
 
 		@Override
