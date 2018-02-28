@@ -24,6 +24,8 @@ public class MapModes {
 		addMapMode("height",new MapMode_Height(grid));
 		addMapMode("temperature", new MapMode_Temperature(grid));
 		addMapMode("rainfall", new MapMode_Rainfall(grid));
+		addMapMode("coordinate", new MapMode_Coord(grid));
+		addMapMode("three mapmode", new MapMode_Three(grid));
 	}
 	
 	public int size() {
@@ -136,6 +138,66 @@ public class MapModes {
 			h=(h*225)/100;
 			h=255-h;
 			return new Color((int)h,(int)h,(int)h);
+		}
+		
+	}
+	
+	private class MapMode_Three extends MapMode{
+
+		public MapMode_Three(TileButtonGrid grid) {
+			super(grid);
+		}
+
+		@Override
+		public String getText(TileButton button) {
+			int height = cch(button.getTile().getHeight());
+			int rainfall = cch(button.getTile().getRainfall());
+			int temperature = cch(button.getTile().getTemperature());
+			return height + "%, " + rainfall + "%, " + temperature + "%";
+		}
+
+		@Override
+		public Color getForeground(TileButton button) {
+			return Color.WHITE;
+		}
+
+		@Override
+		public Color getBackground(TileButton button) {
+			int height = cch(button.getTile().getHeight());
+			int rainfall = cch(button.getTile().getRainfall());
+			int temperature = cch(button.getTile().getTemperature());
+			System.out.println(height + "%, " + rainfall + "%, " + temperature + "%");
+			return new Color(height,rainfall,temperature);
+		}
+		
+		private int cch(int num) {
+			double temp = num;
+			num*=255;
+			num/=100;
+			return (int) temp;
+		}
+		
+	}
+	
+	private class MapMode_Coord extends MapMode{
+
+		public MapMode_Coord(TileButtonGrid grid) {
+			super(grid);
+		}
+
+		@Override
+		public String getText(TileButton button) {
+			return button.getPoint().getX() + ", "+ button.getPoint().getY();
+		}
+
+		@Override
+		public Color getForeground(TileButton button) {
+			return Color.WHITE;
+		}
+
+		@Override
+		public Color getBackground(TileButton button) {
+			return Color.BLUE;
 		}
 		
 	}

@@ -2,11 +2,16 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+
+import runner.runner;
+import world.World;
 
 public class WorldMenuBar extends JMenuBar{
 	private WorldFrame myFrame;
@@ -15,6 +20,44 @@ public class WorldMenuBar extends JMenuBar{
 		super();
 		myFrame = frame;
 		
+		/*
+		File
+		 */
+		JMenu file = new JMenu("File");
+		
+		JMenuItem newFrame = new JMenuItem("New");
+		newFrame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame frame = new JFrame();
+				JOptionPane.showMessageDialog(frame, "Work in progress");
+			}
+			
+		});
+		file.add(newFrame);
+		
+		JMenuItem save = new JMenuItem("Save");
+		save.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame frame = new JFrame();
+				JOptionPane.showMessageDialog(frame, "Work in progress");
+			}
+		});
+		file.add(save);
+		
+		JMenuItem load = new JMenuItem("Load");
+		load.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JFrame frame = new JFrame();
+				JOptionPane.showMessageDialog(frame, "Work in progress");
+			}
+		});
+		file.add(load);
+		
+		
+		this.add(file);
 		/*
 		Settings
 		 */

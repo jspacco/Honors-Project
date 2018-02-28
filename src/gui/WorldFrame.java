@@ -35,8 +35,8 @@ public class WorldFrame extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		myWorld = world;
 		myMapModes = new MapModes(myTileButtonGrid);
-		myIsRun = false;
-		myIsUpdateButtons = false;
+		myIsRun = true;
+		myIsUpdateButtons = true;
 		mySelectedRegion = myWorld.getTileGrid().getDimension().copy();
 		
 		JMenuBar menubar = new WorldMenuBar(this);

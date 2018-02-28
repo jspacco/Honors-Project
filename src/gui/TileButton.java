@@ -32,6 +32,10 @@ public class TileButton extends JButton{
 		myMapModes.updateTileButton(this);
 	}
 	
+	public tPoint getPoint() {
+		return myPoint;
+	}
+	
 	public Tile getTile() {
 		return myTile;
 	}
