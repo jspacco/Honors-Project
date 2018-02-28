@@ -83,6 +83,14 @@ public class MapModes {
 			return button.getTile().getRainfall();
 		}
 		
+		@Override
+		public Color getBackground(TileButton button) {
+			double h = getValue(button);
+			h=(h*225)/100;
+			h=255-h;
+			return new Color((int)h,0,0);
+		}
+		
 	}
 	
 	private class MapMode_Temperature extends MapMode_Value{
@@ -96,6 +104,14 @@ public class MapModes {
 			return button.getTile().getTemperature();
 		}
 		
+		@Override
+		public Color getBackground(TileButton button) {
+			double h = getValue(button);
+			h=(h*225)/100;
+			h=255-h;
+			return new Color(0,(int)h,0);
+		}
+		
 	}
 	
 	private class MapMode_Height extends MapMode_Value{
@@ -104,6 +120,14 @@ public class MapModes {
 			super(grid);
 		}
 
+		@Override
+		public Color getBackground(TileButton button) {
+			double h = getValue(button);
+			h=(h*225)/100;
+			h=255-h;
+			return new Color(0,0,(int)h);
+		}
+		
 		@Override
 		public int getValue(TileButton button) {
 			return button.getTile().getHeight();
