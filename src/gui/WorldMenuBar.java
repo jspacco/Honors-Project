@@ -63,7 +63,7 @@ public class WorldMenuBar extends JMenuBar{
 		 */
 		JMenu settings = new JMenu("Settings");
 		
-		JMenuItem runItem = new JMenuItem("Run");//: " + myFrame.isRun());
+		JMenuItem runItem = new JMenuItem("Run: " + myFrame.isRun());
 		runItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -73,12 +73,12 @@ public class WorldMenuBar extends JMenuBar{
 				else {
 					myFrame.run();
 				}
-				System.out.println(myFrame.isRun());
+				runItem.setText("Run: " + myFrame.isRun());
 			}
 		});			
 		settings.add(runItem);
 		
-		JMenuItem updateItem = new JMenuItem("Update Graphics");//: " + myFrame.isUpdateButtons());
+		JMenuItem updateItem = new JMenuItem("Update Graphics: " + myFrame.isUpdateButtons());
 		updateItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -88,7 +88,7 @@ public class WorldMenuBar extends JMenuBar{
 				else {
 					myFrame.updateButtons();
 				}
-				System.out.println(myFrame.isUpdateButtons());
+				updateItem.setText("Update Graphics: " + myFrame.isUpdateButtons());
 			}
 		});
 		
