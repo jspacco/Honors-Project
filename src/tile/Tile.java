@@ -29,7 +29,7 @@ public class Tile extends tRunnable{
 	
 	@Override
 	public void tick() {
-		//this.incrementHeight(1);	
+		this.incrementHeight(1);	
 		//this.incrementRainfall(1);
 		//this.incrementTemperature(1);
 	}

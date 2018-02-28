@@ -63,22 +63,32 @@ public class WorldMenuBar extends JMenuBar{
 		 */
 		JMenu settings = new JMenu("Settings");
 		
-		JMenuItem runItem = new JMenuItem("Run: " + myFrame.isRun());
+		JMenuItem runItem = new JMenuItem("Run");//: " + myFrame.isRun());
 		runItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				myFrame.setIsRun(!myFrame.isRun());
-			    runItem.setText("Run: " + myFrame.isRun());
+				if(myFrame.isRun()) {
+					myFrame.setRun(false);
+				}
+				else {
+					myFrame.run();
+				}
+				System.out.println(myFrame.isRun());
 			}
 		});			
 		settings.add(runItem);
 		
-		JMenuItem updateItem = new JMenuItem("Update Graphics: " + myFrame.isUpdateButtons());
+		JMenuItem updateItem = new JMenuItem("Update Graphics");//: " + myFrame.isUpdateButtons());
 		updateItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				myFrame.setIsUpdateButtons(!myFrame.isUpdateButtons());
-				updateItem.setText("Update Graphics: " + myFrame.isUpdateButtons());
+				if(myFrame.isUpdateButtons()) {
+					myFrame.setUpdateButtons(false);
+				}
+				else {
+					myFrame.updateButtons();
+				}
+				System.out.println(myFrame.isUpdateButtons());
 			}
 		});
 		

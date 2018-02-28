@@ -35,8 +35,8 @@ public class WorldFrame extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		myWorld = world;
 		myMapModes = new MapModes(myTileButtonGrid);
-		myIsRun = true;
-		myIsUpdateButtons = true;
+		myIsRun = false;
+		myIsUpdateButtons = false;
 		mySelectedRegion = myWorld.getTileGrid().getDimension().copy();
 		
 		JMenuBar menubar = new WorldMenuBar(this);
@@ -51,17 +51,7 @@ public class WorldFrame extends JFrame{
 
 	}
 	
-	public void updateButtons() {
-		int width = mySelectedRegion.getWidth();
-		int height = mySelectedRegion.getHeight();
-		
-		for(int x = 0; x < width; x++) {
-			for(int y = 0; y < height; y++) {
-				TileButton temp = myTileButtonGrid.getTileButton(x, y);
-				temp.update();
-			}
-		}
-	}
+	
 	
 	public void draw() {
 		myButtonPanel.removeAll();
@@ -84,19 +74,49 @@ public class WorldFrame extends JFrame{
 	
 	public void run() {
 		myIsRun = true;
-		while(myIsRun){
-			try {
-				TimeUnit.SECONDS.sleep(myWaitInSeconds);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if(myIsUpdateButtons) {
-				updateButtons();
-			}
-			myWorld.tick();
-		}
+		Thread runThread = new Thread(new Runnable() {
+			public void run() {
+				while(myIsRun){
+					try {
+						TimeUnit.SECONDS.sleep(myWaitInSeconds);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					myWorld.tick();
+				}
+				System.out.println("run Thread ended");
+			}		
+		});
+		runThread.start();
 	}
 
+	public void updateButtons() {
+		myIsUpdateButtons = true;
+		Thread updateThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(myIsUpdateButtons){	
+					try {
+						TimeUnit.SECONDS.sleep(2*myWaitInSeconds);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					
+					int width = mySelectedRegion.getWidth();
+					int height = mySelectedRegion.getHeight();
+					for(int x = 0; x < width; x++) {
+						for(int y = 0; y < height; y++) {
+							TileButton temp = myTileButtonGrid.getTileButton(x, y);
+							temp.update();
+						}
+					}
+				}
+				System.out.println("update buttons Thread ended");
+			}		
+		});	
+		updateThread.start();
+	}
+	
 	public World getWorld() {
 		return myWorld;
 	}
@@ -104,17 +124,17 @@ public class WorldFrame extends JFrame{
 	public boolean isRun() {
 		return myIsRun;
 	}
-
-	public void setIsRun(boolean isRun) {
-		this.myIsRun = isRun;
-	}
 	
 	public boolean isUpdateButtons() {
 		return myIsUpdateButtons;
 	}
 	
-	public void setIsUpdateButtons(boolean isUpdateButtons) {
-		this.myIsUpdateButtons = isUpdateButtons;
+	public void setUpdateButtons(boolean val) {
+		myIsUpdateButtons = val;
+	}
+	
+	public void setRun(boolean val) {
+		myIsRun = val;
 	}
 	
 	public MapModes getMapModes() {
