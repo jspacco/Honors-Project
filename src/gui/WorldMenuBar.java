@@ -91,8 +91,18 @@ public class WorldMenuBar extends JMenuBar{
 				updateItem.setText("Update Graphics: " + myFrame.isUpdateButtons());
 			}
 		});
-		
 		settings.add(updateItem);
+		
+		JMenuItem redraw = new JMenuItem("Redraw");
+		redraw.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				myFrame.draw();				
+			}
+		
+		});
+		settings.add(redraw);
+		
 		this.add(settings);
 		
 		/*

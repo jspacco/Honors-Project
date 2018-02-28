@@ -17,7 +17,7 @@ public class MapModes {
 	
 	public MapModes(TileButtonGrid grid) {
 		myTileButtonGrid = grid;
-		selectedMapMode = 4;
+		selectedMapMode = 0;
 		nameMapModeDictonary = new HashMap<String,Integer>();
 		numMapModeDictonary = new HashMap<Integer,MapMode>();
 		numeMapModeDictonary = new HashMap<Integer, String>();
@@ -26,6 +26,9 @@ public class MapModes {
 		addMapMode("rainfall", new MapMode_Rainfall(grid));
 		addMapMode("coordinate", new MapMode_Coord(grid));
 		addMapMode("three mapmode", new MapMode_Three(grid));
+		addMapMode("MapMode_Faked", new MapMode_Faked(grid));
+		
+		setMapMode("MapMode_Faked");
 	}
 	
 	public int size() {
@@ -70,6 +73,39 @@ public class MapModes {
 		nameMapModeDictonary.put(name, num);
 		numeMapModeDictonary.put(num, name);
 		numMapModeDictonary.put(num, mapMode);
+	}
+	
+	private class MapMode_Faked extends MapMode{
+
+		public MapMode_Faked(TileButtonGrid grid) {
+			super(grid);
+		}
+
+		@Override
+		public String getText(TileButton button) {
+			return "";
+		}
+
+		@Override
+		public Color getForeground(TileButton button) {
+			return Color.WHITE;
+		}
+
+		@Override
+		public Color getBackground(TileButton button) {
+			int h = button.getTile().getHeight();
+			h=(h*225)/100;
+			
+			if(h < 100)
+				h = 100;
+			
+			if(button.getTile().getHeight() > 30) {
+				h = 255 - h;
+				return new Color(0,h,0);
+			}
+			return new Color(0,0,h);
+		}
+		
 	}
 	
 	private class MapMode_Rainfall extends MapMode_Value{

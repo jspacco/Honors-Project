@@ -3,7 +3,7 @@ package shapes;
 import java.util.Random;
 
 public class tRectangle{
-	Random myRandom = new Random(System.currentTimeMillis());
+	Random myRandom = new Random(Double.doubleToLongBits(Math.random()));
 	
 	private tPoint bottomLeft;
 	private int width;
@@ -47,12 +47,18 @@ public class tRectangle{
 	}
 	
 	public tRectangle createRandWrappedtangle() {
-		int x = myRandom.nextInt(2*width-1) - width;
-		int y = myRandom.nextInt(2*height-1) - height;
+		int x = myRandom.nextInt(width);
+		int y = myRandom.nextInt(height);
+		int corner = myRandom.nextInt(4);	
 		
 		int _width = myRandom.nextInt(width - 1);
 		int _height = myRandom.nextInt(height - 1);
 
+		if(corner == 2 || corner == 1)			
+			x = x -_width;
+		if(corner == 2 || corner == 3)
+			y = y - _height;
+		
 		return new tRectangle(x,y,_width,_height);
 	}
 	

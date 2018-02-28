@@ -9,7 +9,7 @@ public class TileGrid {
 	private Random myRandom = new Random(System.currentTimeMillis());;
 	private tRectangle myDimension;
 	private Tile[][] myTiles;
-	public static int launchSettings = 2;
+	public static int launchSettings = 1;
 	
 	public TileGrid(int width, int height) {
 		myDimension = new tRectangle(width,height);

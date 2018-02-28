@@ -55,8 +55,10 @@ public class Tile extends tRunnable{
 
 	public void setHeight(int height) {
 		this.myHeight = height;
-		if(myHeight < 0 || myHeight >= 100)
+		if(myHeight < 0)
 			myHeight = 0;
+		else if(myHeight >= 100)
+			myHeight = 100;
 	}
 
 	public void incrementHeight(int height) {
@@ -69,8 +71,11 @@ public class Tile extends tRunnable{
 
 	public void setRainfall(int rainfall) {
 		this.myRainfall = rainfall;
-		if(myRainfall < 0 || myRainfall >= 100)
+		if(myRainfall < 0)
 			myRainfall = 0;
+		else if(myRainfall >= 100)
+			myRainfall = 100;
+
 	}
 
 	public void incrementRainfall(int rainfall) {
@@ -83,8 +88,10 @@ public class Tile extends tRunnable{
 
 	public void setTemperature(int temperature) {
 		this.myTemperature = temperature;
-		if(myTemperature < 0 || myTemperature >= 100)
+		if(myTemperature < 0)
 			myTemperature = 0;
+		else if(myTemperature >= 100)
+			myTemperature = 100;
 	}
 	
 	public void incrementTemperature(int temperature) {

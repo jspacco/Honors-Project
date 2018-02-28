@@ -31,7 +31,7 @@ public class WorldFrame extends JFrame{
 	private int myWaitInSeconds;
 	
 	public WorldFrame(World world) {
-		super("Seed: " + world.toString());
+		super("Honor's Project by James Woolley");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		myWorld = world;
 		myMapModes = new MapModes(myTileButtonGrid);
@@ -55,7 +55,6 @@ public class WorldFrame extends JFrame{
 	
 	public void draw() {
 		myButtonPanel.removeAll();
-		
 		int width = mySelectedRegion.getWidth();
 		int height = mySelectedRegion.getHeight();
 		
