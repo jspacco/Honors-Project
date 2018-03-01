@@ -13,7 +13,7 @@ public class TileGrid {
 	private Random myRandom = new Random(System.currentTimeMillis());;
 	private tRectangle myDimension;
 	private Tile[][] myTiles;
-	public static int launchSettings = ONE_HUNDRED_RECTANGLES;
+	public static int launchSettings = ONE_RECTANGLE;
 	
 	public TileGrid(int width, int height) {
 		myDimension = new tRectangle(width,height);
@@ -66,7 +66,7 @@ public class TileGrid {
 	}
 	
 	private void generate_00() {
-		tRectangle temp = new tRectangle(-3,-3,10,10);
+		tRectangle temp = myDimension.createRandWrappedtangle();
 		tPoint[] points = myDimension.getRandomWrappedPoints(temp);
 		for(tPoint point: points) {
 			Tile tile = myTiles[point.getX()][point.getY()];
@@ -81,9 +81,12 @@ public class TileGrid {
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 100; j++) {
 				tRectangle temp = myDimension.createRandWrappedtangle();
+			    //tRectangle temp = myDimension.createRandWrappedtangle();
+				System.out.printf("iter %d %s\n", j, temp.toString());
 				//tRectangle temp = new tRectangle(-3,-3,3,3);
 				tPoint[] points = myDimension.getRandomWrappedPoints(temp);
 				for(tPoint point: points) {
+				    //System.out.printf("Point: %s\n", point);
 					Tile tile = myTiles[point.getX()][point.getY()];
 					if(i==0)
 						tile.incrementHeight(1);
