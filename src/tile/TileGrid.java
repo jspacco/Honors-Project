@@ -6,10 +6,14 @@ import shapes.tPoint;
 import shapes.tRectangle;
 
 public class TileGrid {
+    public static final int ONE_RECTANGLE = 0;
+    public static final int ONE_HUNDRED_RECTANGLES = 1;
+    public static final int TEN_RECTANGLES = 2;
+    
 	private Random myRandom = new Random(System.currentTimeMillis());;
 	private tRectangle myDimension;
 	private Tile[][] myTiles;
-	public static int launchSettings = 1;
+	public static int launchSettings = ONE_HUNDRED_RECTANGLES;
 	
 	public TileGrid(int width, int height) {
 		myDimension = new tRectangle(width,height);
@@ -39,6 +43,26 @@ public class TileGrid {
 
 	public tRectangle getDimension() {
 		return myDimension;
+	}
+	
+	private void generate(int iteration, int increment){
+	    // not using this, but a possible way to parameterize configuration settings
+	    for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < iteration; j++) {
+                tRectangle temp = myDimension.createRandWrappedtangle();
+                //tRectangle temp = new tRectangle(-3,-3,3,3);
+                tPoint[] points = myDimension.getRandomWrappedPoints(temp);
+                for(tPoint point: points) {
+                    Tile tile = myTiles[point.getX()][point.getY()];
+                    if(i==0)
+                        tile.incrementHeight(increment);
+                    else if(i==1)
+                        tile.incrementRainfall(increment);
+                    else if(i==2)
+                        tile.incrementTemperature(increment);
+                }
+            }
+        }
 	}
 	
 	private void generate_00() {
@@ -92,9 +116,9 @@ public class TileGrid {
 	}
 	
 	private void generate() {
-		if(launchSettings==0) generate_00();
-		else if(launchSettings==1) generate_01();
-		else if(launchSettings==2) generate_02();	
+		if(launchSettings==ONE_RECTANGLE) generate_00();
+		else if(launchSettings==ONE_HUNDRED_RECTANGLES) generate_01();
+		else if(launchSettings==TEN_RECTANGLES) generate_02();	
 	}
 	
 }
