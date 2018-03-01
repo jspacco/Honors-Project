@@ -295,19 +295,12 @@ public class MapModes {
 		}
 		
 		public void setForeground(TileButton button) {
-			if(System.getProperty("os.name") == "Mac") {
-				button.setForeground(getBackground(button));
-			}
-			else {
-				button.setForeground(getForeground(button));
-			}
+			button.setForeground(getBackground(button));
 		}
 		
 		
 		public void setBackground(TileButton button) {
-			if(System.getProperty("os.name") != "Mac") {
-				button.setBackground(getBackground(button));
-			}
+			button.setBackground(getBackground(button));
 		}
 	}
 }

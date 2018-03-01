@@ -26,6 +26,7 @@ public class TileButton extends JButton{
 				myTile.edit();
 			}
 		});
+		this.setOpaque(true);
 	}
 	
 	public void update() {
