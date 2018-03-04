@@ -11,12 +11,13 @@ import datastructures.tRunnable;
 import tile.Biome;
 import tile.Tile;
 import tile.TileGrid;
+import worldgen.PerlinNoiseGen;
 
 public class World extends tRunnable{
 	private TileGrid myTileGrid;
 	
 	public World(int width, int height) {		
-		myTileGrid = new TileGrid(width, height);
+		myTileGrid = new TileGrid(width, height, new PerlinNoiseGen(width,height));
 		
 	}
 

@@ -2,5 +2,22 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-elumens.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-geom-core.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-geom-hanim.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-geom-particle.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-geom-spline.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-geom-terrain.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-inputdevice.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-java3d-all.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-loader-3ds.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-loader-core.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-loader-dem.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-loader-stl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-loader-vterrain.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-navigation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-terrain.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-texture.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Popeh/Desktop/New folder/j3d-org-util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

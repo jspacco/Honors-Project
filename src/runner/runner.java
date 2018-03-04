@@ -6,7 +6,6 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import gui.StartFrame;
 import gui.WorldFrame;
 import world.World;
 
