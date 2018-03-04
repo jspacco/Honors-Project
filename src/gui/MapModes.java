@@ -96,11 +96,7 @@ public class MapModes {
 			int h = button.getTile().getHeight();
 			h=(h*225)/100;
 			
-			if(h < 100)
-				h = 100;
-			
 			if(button.getTile().getHeight() > 30) {
-				h = 255 - h;
 				return new Color(0,h,0);
 			}
 			return new Color(0,0,h);
